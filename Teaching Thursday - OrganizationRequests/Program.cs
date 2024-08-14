@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Metadata.Query;
@@ -17,6 +18,8 @@ namespace Teaching_Thursday___OrganizationRequests
             //Interface für OrganizationService, OrganizationServiceProxy, ServiceClient -> Abstrakter Bauplan mit vorgegebenen Funktionen
             //Create, Retrieve, Update, Delete, Associate Disassociate, RetrieveMultiple und Execute
             IOrganizationService service = CrmConnector.GetIOrganizationService("https://lmedev.crm4.dynamics.com/");
+
+
 
             // Lösung erstellen mit CreateRequest
             Entity solution = new Entity("solution", new Guid("ae581cb0-0cb8-477e-919b-37a8e4d86dc4"));
@@ -66,6 +69,14 @@ namespace Teaching_Thursday___OrganizationRequests
             };
 
             service.Execute(deleteRequest);
+
+
+            //Microsoft.Crm.Sdk.Messages hat ebenfalls noch viele spannende Requests, z.B.
+            //App- und Lösungskomponenten-Verwaltung, Vertriebs- und Marketingprozesse, Benutzer- und Sicherheitsmanagement,
+            //Datenverwaltung und Verarbeitung (z.B. auch Rollups, Workflows, etc.) , Termin- und Ressourcenmanagement,
+            //Wartung und Systemverwaltung
+
+            var retrieveVersionResponse = (RetrieveVersionResponse)service.Execute(new Microsoft.Crm.Sdk.Messages.RetrieveVersionRequest());
         }
 
         static void DemoEntities(IOrganizationService service)
@@ -792,12 +803,12 @@ namespace Teaching_Thursday___OrganizationRequests
 
         static void DemoRevokeAccess(IOrganizationService service)
         {
-            var revokeAccessRequest = new CreateAsyncJobToRevokeInheritedAccessRequest 
+            var revokeAccessRequest = new Microsoft.Xrm.Sdk.Messages.CreateAsyncJobToRevokeInheritedAccessRequest 
             { 
                 RelationshipSchema = "rit_buchung_firmaid_lu_account",
             };
 
-            var revokeAccessResponse = (CreateAsyncJobToRevokeInheritedAccessResponse)service.Execute(revokeAccessRequest);
+            var revokeAccessResponse = (Microsoft.Xrm.Sdk.Messages.CreateAsyncJobToRevokeInheritedAccessResponse)service.Execute(revokeAccessRequest);
         }
 
 
