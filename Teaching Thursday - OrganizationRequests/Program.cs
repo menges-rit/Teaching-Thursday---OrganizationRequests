@@ -6,7 +6,6 @@ using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Security.Principal;
 
 namespace Teaching_Thursday___OrganizationRequests
 {
@@ -239,7 +238,8 @@ namespace Teaching_Thursday___OrganizationRequests
                 new OptionMetadata(new Label("Option 4", 1031), 4),
                 new OptionMetadata(new Label("Option 5", 1031), 5)
             }
-                }
+                },
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(createOptionSetRequest);
@@ -260,7 +260,8 @@ namespace Teaching_Thursday___OrganizationRequests
                 {
                     Name = "new_globaloptionset",
                     DisplayName = new Label("Aktualisiertes Globales Optionsset", 1031),
-                }
+                },
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(updateOptionSetRequest);
@@ -269,7 +270,8 @@ namespace Teaching_Thursday___OrganizationRequests
             var insertOptionValueRequest = new InsertOptionValueRequest
             {
                 OptionSetName = "new_globaloptionset",
-                Label = new Label("Neue Option", 1031)
+                Label = new Label("Neue Option", 1031),
+                SolutionUniqueName = "TeachingThursdaySolution" 
             };
 
             service.Execute(insertOptionValueRequest);
@@ -279,7 +281,8 @@ namespace Teaching_Thursday___OrganizationRequests
             {
                 OptionSetName = "new_globaloptionset",
                 Value = 1,
-                Label = new Label("Aktualisierte Option 1", 1031)
+                Label = new Label("Aktualisierte Option 1", 1031),
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(updateOptionValueRequest);
@@ -288,7 +291,8 @@ namespace Teaching_Thursday___OrganizationRequests
             var orderOptionRequest = new OrderOptionRequest
             {
                 OptionSetName = "new_globaloptionset",
-                Values = new[] { 5, 4, 3, 2, 1, 100000000 }
+                Values = new[] { 5, 4, 3, 2, 1, 100000000 },
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(orderOptionRequest);
@@ -297,7 +301,8 @@ namespace Teaching_Thursday___OrganizationRequests
             var deleteOptionValueRequest = new DeleteOptionValueRequest
             {
                 OptionSetName = "new_globaloptionset",
-                Value = 100000000
+                Value = 100000000,
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(deleteOptionValueRequest);
@@ -319,7 +324,8 @@ namespace Teaching_Thursday___OrganizationRequests
                 EntityLogicalName = "account",
                 AttributeLogicalName = "statuscode",
                 Label = new Label("Neuer Status", 1031),
-                StateCode = 0
+                StateCode = 0,
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             // Ausführen des Einfüge-Requests für den Statuswert
@@ -401,7 +407,8 @@ namespace Teaching_Thursday___OrganizationRequests
                     ReferencedEntity = "account",
                     ReferencingEntity = "contact",
                     SchemaName = "new_account_contact"
-                }
+                },
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
 
             service.Execute(createOneToManyRequest);
@@ -462,6 +469,7 @@ namespace Teaching_Thursday___OrganizationRequests
                                         Order = 10000
                                     }
                             },
+                SolutionUniqueName  = "TeachingThursdaySolution"
             };
             var response = (CreateManyToManyResponse)service.Execute(createManyToManyRequest);
 
@@ -488,7 +496,8 @@ namespace Teaching_Thursday___OrganizationRequests
                     {
                         Assign = CascadeType.NoCascade
                     }
-                }
+                },
+                SolutionUniqueName  = "TeachingThursdaySolution"
             };
 
             service.Execute(updateRelationshipRequest);
@@ -528,6 +537,7 @@ namespace Teaching_Thursday___OrganizationRequests
                                 new MetadataConditionExpression("SchemaName", MetadataConditionOperator.Equals, "account")
                             }
                     }
+                    
                 }
             };
             var metadataChangesResponse = (RetrieveMetadataChangesResponse)service.Execute(retrieveMetadataChangesRequest);
@@ -749,7 +759,8 @@ namespace Teaching_Thursday___OrganizationRequests
                     SchemaName = "new_AccountKey",
                     DisplayName = new Label("new_AccountKeyLabel", 1031)
                 },
-                EntityName = "account"
+                EntityName = "account",
+                SolutionUniqueName = "TeachingThursdaySolution"
             };
             service.Execute(createKeyRequest);
 
